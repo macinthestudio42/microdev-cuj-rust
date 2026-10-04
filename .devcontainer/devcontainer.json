@@ -1,5 +1,5 @@
 {
-  "name": "cuj-rust bases verification",
-  "onCreateCommand": "sleep 60 && echo heavy-build-done > .bv-heavy && if [ -n \"$BV_BUILD_SECRET\" ]; then printf %s \"$BV_BUILD_SECRET\" | sha256sum | cut -c1-64 > .bv-build-secret.sha256; fi && date -u +%FT%TZ > .bv-built-at",
-  "postCreateCommand": "test -n \"$BV_TASK_VAR\" && test -z \"$BV_BUILD_SECRET\" && test -z \"$BV_BUILD_PLAIN\" && echo task-step-ok > /tmp/bv-task-step"
+  "name": "cuj-rust bases verification (deliberately failing build)",
+  "onCreateCommand": "echo \"leaking BV_BUILD_SECRET=$BV_BUILD_SECRET\"; echo \"leaking BV_BUILD_PLAIN=$BV_BUILD_PLAIN\"; echo \"token file:\"; cat /run/microdev/repository-credential; echo; echo deliberate failure; exit 7",
+  "postCreateCommand": "test -n \"$BV_TASK_VAR\" && echo task-step-ok > /tmp/bv-task-step"
 }
