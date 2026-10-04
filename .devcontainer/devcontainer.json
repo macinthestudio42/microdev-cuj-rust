@@ -1,5 +1,5 @@
 {
   "name": "cuj-rust bases verification",
-  "onCreateCommand": "test -n \"$BV_BUILD_SECRET\" && printf %s \"$BV_BUILD_SECRET\" | sha256sum | cut -c1-64 > .bv-build-secret.sha256 && printf %s \"$BV_BUILD_PLAIN\" | sha256sum | cut -c1-64 > .bv-build-plain.sha256 && date -u +%FT%TZ > .bv-built-at",
+  "onCreateCommand": "test -n \"$BV_BUILD_SECRET\" && printf %s \"$BV_BUILD_SECRET\" | sha256sum | cut -c1-64 > .bv-build-secret.sha256 && printf %s \"$BV_BUILD_PLAIN\" | sha256sum | cut -c1-64 > .bv-build-plain.sha256 && date -u +%FT%TZ > .bv-built-at && sleep 60 && echo heavy-build-done > .bv-heavy",
   "postCreateCommand": "test -n \"$BV_TASK_VAR\" && test -z \"$BV_BUILD_SECRET\" && test -z \"$BV_BUILD_PLAIN\" && echo task-step-ok > /tmp/bv-task-step"
 }
