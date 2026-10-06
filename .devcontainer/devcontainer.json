@@ -1,9 +1,0 @@
-{
-  "name": "cuj-rust dev container verification",
-  "image": "mcr.microsoft.com/devcontainers/rust:1",
-  "containerEnv": {
-    "DV_CONTAINER_ENV": "from-containerEnv"
-  },
-  "postCreateCommand": "echo \"postcreate user=$(id -un) home=$HOME dockerenv=$(test -f /.dockerenv && echo yes || echo no) task=${DV_TASK_VAR:-unset} at=$(date -u +%FT%TZ)\" > .dv-postcreate-marker",
-  "onCreateCommand": "cargo build && echo \"built in container user=$(id -un)\" > .dv-built"
-}
