@@ -1,8 +1,0 @@
-{
-  "name": "cuj-rust compose base verification",
-  "dockerComposeFile": "compose.yaml",
-  "service": "app",
-  "workspaceFolder": "/workspaces/microdev-cuj-rust",
-  "onCreateCommand": "sudo apt-get update -qq && sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -qq postgresql-client >/dev/null && psql -h db -U postgres -v ON_ERROR_STOP=1 -c \"create table seeded(note text); insert into seeded values ('from-build-' || now()::text)\" && echo compose-build-ok > .dv-compose-built",
-  "postCreateCommand": "psql -h db -U postgres -Atc 'select note from seeded' > .dv-compose-task && echo compose-task-ok >> .dv-compose-task"
-}
