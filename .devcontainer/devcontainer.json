@@ -1,0 +1,5 @@
+{
+  "name": "cuj-rust build-speed verification",
+  "onCreateCommand": "sleep 60 && echo heavy-build-done > .bv-heavy && date -u +%FT%TZ > .bv-built-at",
+  "postCreateCommand": "echo task-step-ok > /tmp/bv-task-step"
+}
